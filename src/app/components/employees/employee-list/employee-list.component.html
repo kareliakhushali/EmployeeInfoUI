@@ -1,0 +1,31 @@
+<div class="container my-5">
+<h1 class="mb-3">Employees</h1>
+<!--here we will only show the table if there are employees in the array thet we declared-->
+<table class="table" *ngIf="employees && employees.length > 0">
+
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Salary</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--the employees variable name should be same as that declared in ts file of array employees-->
+    <tr *ngFor="let employee of employees">
+      <td>{{employee.id}}</td>
+      <td>{{employee.name}}</td>
+      <td>{{employee.email}}</td>
+      <td>{{employee.phone}}</td>
+      <td>{{employee.salary}}</td>
+      <td>{{employee.department}}</td>
+      <td><a [routerLink]="['/employees','edit',employee.id]">View</a></td>
+    </tr>
+  </tbody>
+</table>
+<!--this tag we will only show when there are no records in the array employees-->
+<p *ngIf="!employees || employees.length <= 0">No employee found!</p>
+</div>

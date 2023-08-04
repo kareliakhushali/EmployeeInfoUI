@@ -1,0 +1,51 @@
+<div class="container my-5">
+  <h1 class="mb-3">Add New Employee</h1>
+  <form #form="ngForm" (ngSubmit)="addEmployee()" novalidate>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="addEmployeeRequest.name" required  pattern="^(?![0-9]).*" #name="ngModel">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+            <div *ngIf="name.errors?.['required']">Name is required.</div>
+            <div *ngIf="name.errors?.['pattern']">Name should not start with a number.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="addEmployeeRequest.email" required email #email="ngModel">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+        <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
+      </div>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="number" class="form-control" id="phone" name="phone" [(ngModel)]="addEmployeeRequest.phone" required pattern="[0-9]{10}" #phone="ngModel" >
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-danger">
+            <div *ngIf="phone.errors?.['required']">Phone is required.</div>
+            <div *ngIf="phone.errors?.['pattern']">Please enter a valid 10-digit phone number.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input type="number" class="form-control" id="salary" name="salary" [(ngModel)]="addEmployeeRequest.salary" required min="0" #salary="ngModel">
+          <div *ngIf="salary.invalid && (salary.dirty || salary.touched)" class="text-danger">
+            <div *ngIf="salary.errors?.['required']">Salary is required.</div>
+            <div *ngIf="salary.errors?.['min']">Please enter a valid salary amount.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="department" class="form-label">Department</label>
+          <input type="text" class="form-control" id="department" name="department" [(ngModel)]="addEmployeeRequest.department" required #department="ngModel">
+          <div *ngIf="department.invalid && (department.dirty || department.touched)" class="text-danger">
+            <div *ngIf="department.errors?.['required']">Department is required.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
+  </form>
+</div>
